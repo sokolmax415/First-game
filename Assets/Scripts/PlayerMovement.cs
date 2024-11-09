@@ -22,9 +22,9 @@ public class PlayerMovement : MonoBehaviour
 
         if (horizontalInput > 0.01f)
         {
-            transform.localScale = Vector3.one;
+            transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
         } else if (horizontalInput < -0.01f) {
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(-0.7f, 0.7f, 0.7f);
         }
 
         if (Input.GetKey(KeyCode.Space) && grounded)
@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        body.velocity = new Vector2(body.velocity.x, speed);
+        body.velocity = new Vector2(body.velocity.x, speed * 1.5f);
         anim.SetTrigger("jump");
         grounded = false;
     }
