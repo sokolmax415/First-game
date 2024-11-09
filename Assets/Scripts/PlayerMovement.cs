@@ -19,12 +19,11 @@ public class PlayerMovement : MonoBehaviour
     {
         float horizontalInput = Input.GetAxis("Horizontal");
         body.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, body.velocity.y);
-
         if (horizontalInput > 0.01f)
         {
-            transform.localScale = Vector3.one;
+            transform.localScale = new Vector3(0.7F,0.7F,1);
         } else if (horizontalInput < -0.01f) {
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(-0.7F, 0.7F, 1);
         }
 
         if (Input.GetKey(KeyCode.Space) && grounded)
@@ -38,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        body.velocity = new Vector2(body.velocity.x, speed);
+        body.velocity = new Vector2(body.velocity.x, speed * 3);
         anim.SetTrigger("jump");
         grounded = false;
     }
