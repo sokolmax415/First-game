@@ -9,7 +9,8 @@ public class Health : MonoBehaviour
 
     private int MAX_HEALTH = 100;
 
-    private bool dead = false;
+    private bool dead;
+
 
     private void Awake()
     {
@@ -35,7 +36,15 @@ public class Health : MonoBehaviour
         this.health -= _damage;
 
         if (health <= 0) {
-            anim.SetTrigger("die");
+            if (!dead)
+            {
+                anim.SetTrigger("die");
+                GetComponent<PlayerMovement>().enabled = false;
+                dead = true;
+            }
+        } else
+        {
+            anim.SetTrigger("hurt");
         }
 
        
@@ -60,8 +69,5 @@ public class Health : MonoBehaviour
         }
     }
 
-    private void Die() {
-        Debug.Log("Dead");
-        dead = true;
-    }
+    
 }
