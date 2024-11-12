@@ -5,29 +5,49 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField] private int health = 100;
+    private Animator anim;
 
     private int MAX_HEALTH = 100;
 
-    private bool dead = false;
-    
+    private bool dead;
+
+
+    private void Awake()
+    {
+        anim = GetComponent<Animator>();
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            Damage(10);
+        } 
        
     }
-
-    public void Damage(int amount)
+    public void Damage(int _damage)
     {
-        if (amount < 0) {
+        if (_damage < 0) {
             throw new System.ArgumentOutOfRangeException("Cannot have negative damage");
         }
 
         
-        this.health -= amount;
+        this.health -= _damage;
 
-        if (health < 0) {
-            Die();
+        if (health <= 0) {
+            if (!dead)
+            {
+                anim.SetTrigger("die");
+                GetComponent<PlayerMovement>().enabled = false;
+                dead = true;
+            }
+        } else
+        {
+            anim.SetTrigger("hurt");
         }
+
+       
     }
 
    
@@ -49,8 +69,5 @@ public class Health : MonoBehaviour
         }
     }
 
-    private void Die() {
-        Debug.Log("Dead");
-        dead = true;
-    }
+    
 }
