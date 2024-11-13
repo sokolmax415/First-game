@@ -14,13 +14,13 @@ public class Goblin : MonoBehaviour
 
     private Animator anim;
     private Health playerHealth;
-    //private EnemyPatrol enemyPatrol;
+    private GoblinPatrol enemyPatrol;
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
-        boxCollider = GetComponent<BoxCollider2D>();
-        //enemyPatrol = GetComponentInParent<EnemyPatrol>();
+        //boxCollider = GetComponent<BoxCollider2D>();
+        enemyPatrol = GetComponentInParent<GoblinPatrol>();
     }
 
     private void Update()
@@ -30,6 +30,10 @@ public class Goblin : MonoBehaviour
         {
             cooldownTimer = 0;
             anim.SetTrigger("attack_short");
+        }
+        if (enemyPatrol != null)
+        {
+            enemyPatrol.enabled = !PlayerInSight();
         }
     }
 
