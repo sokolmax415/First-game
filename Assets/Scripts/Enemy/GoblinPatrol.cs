@@ -67,7 +67,7 @@ public class GoblinPatrol : MonoBehaviour
     {
         idleTimer = 0;
         anim.SetBool("moving", true);
-        enemy.localScale = new Vector3(Mathf.Abs(initScale.x) * (-1) * dir,initScale.y,initScale.z);
+        enemy.localScale = new Vector3(Mathf.Abs(initScale.x) * dir,initScale.y,initScale.z);
         enemy.position = new Vector3(enemy.position.x + Time.deltaTime * dir * speed,
             enemy.position.y, enemy.position.z);
     }
