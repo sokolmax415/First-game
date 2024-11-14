@@ -29,9 +29,9 @@ public class PlayerMovement : MonoBehaviour
 
         if (horizontalInput > 0.01f)
         {
-            transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
+            transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
         } else if (horizontalInput < -0.01f) {
-            transform.localScale = new Vector3(-0.7f, 0.7f, 0.7f);
+            transform.localScale = new Vector3(-0.6f, 0.6f, 0.6f);
         }
 
         
